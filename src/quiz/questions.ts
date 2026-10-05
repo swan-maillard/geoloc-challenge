@@ -42,7 +42,7 @@ export const QUESTIONS: Question[] = [
     ],
     answer: "climbing",
     hints: [
-      "Highlight Hugo and look at the places that aren't home or work.",
+      "Put Hugo in amber and look at the places that aren't home or work.",
       "He goes to the same place in Gerland on Wednesday evening and Sunday morning.",
     ],
     explanation:
@@ -142,7 +142,7 @@ export const QUESTIONS: Question[] = [
     answer: "malik",
     hints: [
       "Only one of them drives to work. Which way does that car go?",
-      "Pick Tuesday, highlight the driver and step through 8:00 to 8:10. The panel gives the speed.",
+      "Pick Tuesday, put the driver in amber and step through 8:00 to 8:10. The panel gives the speed.",
     ],
     explanation:
       "A phone that logs where you are also logs how fast you go. Some car insurers already price policies on how people drive. The original challenge asked who got a speeding ticket on a given day.",
