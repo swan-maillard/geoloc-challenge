@@ -18,9 +18,9 @@ export const QUESTIONS: Question[] = [
     id: "camille-home",
     text: "Where does Camille live?",
     options: [
-      { id: "Croix-Rousse, Lyon 4th", label: "Croix-Rousse" },
       { id: "La Guillotière, Lyon 7th", label: "La Guillotière" },
       { id: "Villeurbanne, near Gratte-Ciel", label: "Villeurbanne, near Gratte-Ciel" },
+      { id: "Croix-Rousse, Lyon 4th", label: "Croix-Rousse" },
       { id: "Bron", label: "Bron" },
     ],
     answer: "Croix-Rousse, Lyon 4th",
@@ -35,8 +35,8 @@ export const QUESTIONS: Question[] = [
     id: "hugo-sport",
     text: "Which sport does Hugo do?",
     options: [
-      { id: "climbing", label: "Climbing" },
       { id: "swimming", label: "Swimming" },
+      { id: "climbing", label: "Climbing" },
       { id: "football", label: "Football" },
       { id: "tennis", label: "Tennis" },
     ],
@@ -52,10 +52,10 @@ export const QUESTIONS: Question[] = [
     id: "camille-friday",
     text: "What did Camille do on Friday evening?",
     options: [
-      { id: "theatre", label: "She went to the theatre" },
       { id: "cinema", label: "She went to the cinema" },
       { id: "concert hall", label: "She went to a concert" },
       { id: "restaurant", label: "She had dinner out" },
+      { id: "theatre", label: "She went to the theatre" },
     ],
     answer: "theatre",
     hints: ["Pick Friday and move the time to 21:00.", "She walked a few minutes from home and stayed close to three hours."],
@@ -66,9 +66,9 @@ export const QUESTIONS: Question[] = [
     id: "same-building",
     text: "Two of them live in the same building. Who?",
     options: [
-      { id: "hugo+tom", label: "Tom and Hugo" },
       { id: "ines+lea", label: "Inès and Léa" },
       { id: "camille+malik", label: "Camille and Malik" },
+      { id: "hugo+tom", label: "Tom and Hugo" },
       { id: "ines+tom", label: "Inès and Tom" },
     ],
     answer: "hugo+tom",
@@ -83,10 +83,10 @@ export const QUESTIONS: Question[] = [
     id: "bike-commute",
     text: "Who cycles to work?",
     options: [
-      { id: "ines", label: "Inès" },
       { id: "tom", label: "Tom" },
-      { id: "hugo", label: "Hugo" },
+      { id: "ines", label: "Inès" },
       { id: "malik", label: "Malik" },
+      { id: "hugo", label: "Hugo" },
     ],
     answer: "ines",
     hints: [
@@ -117,10 +117,10 @@ export const QUESTIONS: Question[] = [
     id: "saint-jean-photo",
     text: "A lost phone has a photo of Place Saint-Jean taken on Saturday at 15:10. Whose phone is it?",
     options: [
-      { id: "ines", label: "Inès" },
-      { id: "lea", label: "Léa" },
       { id: "camille", label: "Camille" },
+      { id: "ines", label: "Inès" },
       { id: "hugo", label: "Hugo" },
+      { id: "lea", label: "Léa" },
     ],
     answer: "lea",
     hints: [
@@ -134,10 +134,10 @@ export const QUESTIONS: Question[] = [
     id: "speed-camera",
     text: "A speed camera on the boulevard Laurent-Bonnevay (limit 70 km/h) flashed a car at over 90 km/h on Tuesday, around 8:05. Who was driving?",
     options: [
-      { id: "malik", label: "Malik" },
       { id: "tom", label: "Tom" },
-      { id: "ines", label: "Inès" },
       { id: "hugo", label: "Hugo" },
+      { id: "malik", label: "Malik" },
+      { id: "ines", label: "Inès" },
     ],
     answer: "malik",
     hints: [
