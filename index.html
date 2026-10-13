@@ -3,25 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Geoloc Challenge, what your location gives away</title>
+    <title>Geoloc Challenge</title>
     <meta
       name="description"
-      content="Follow six made-up people through a week in Lyon, find the places they stay, and answer eight questions their GPS traces give away. A rebuild of a privacy awareness challenge we made at INSA Lyon."
+      content="Six made-up people, one week of GPS traces in Lyon, and eight questions about them. Based on a privacy project we did at INSA Lyon."
     />
     <meta name="theme-color" content="#0D161C" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   </head>
   <body>
-    <a class="skip-link" href="#challenge">Skip to the challenge</a>
+    <a class="skip-link" href="#challenge">Skip to the quiz</a>
     <header class="page-header">
-      <h1>Geoloc Challenge</h1>
+      <div class="title-row">
+        <h1>Geoloc Challenge</h1>
+        <a class="code-link" href="https://github.com/swan-maillard/geoloc-challenge">Code on GitHub</a>
+      </div>
       <p class="intro">
-        A privacy awareness challenge four of us built at INSA Lyon in 2024-2025: a map of people's GPS traces and a quiz
-        on what those traces give away. This page rebuilds the idea with six people who don't exist.
-      </p>
-      <p class="links">
-        <span>Code of the original project: private (Inria GitLab)</span>
-        <a href="https://swan-maillard.github.io/#work">Swan Maillard</a>
+        How much does a week of GPS traces say about someone? We built this quiz at INSA Lyon in 2024-2025 with real
+        traces. <strong>The six people here don't exist</strong>, a script made up their week.
       </p>
     </header>
 
@@ -30,110 +29,93 @@
         <h2 id="explorer-title" class="visually-hidden">Traces on the map</h2>
 
         <div class="stage">
-          <p class="map-note">
-            <strong>These six people don't exist.</strong> A script made up their week, because real location data
-            points to real people. That was the main warning we got about the original.
-          </p>
           <div class="map-wrap">
             <div id="map" role="region" aria-label="Map of the traces. The places are also listed as buttons in the panel."></div>
             <p id="map-summary" class="visually-hidden"></p>
           </div>
           <div class="playback">
             <label class="field day-field" for="day">
-              Day
+              <span class="label">Day</span>
               <select id="day"></select>
             </label>
-            <button type="button" class="button primary" id="play">Play</button>
-            <button type="button" class="button" id="back" aria-label="Back 15 minutes">−15 min</button>
-            <button type="button" class="button" id="forward" aria-label="Forward 15 minutes">+15 min</button>
+            <div class="step-buttons">
+              <button type="button" class="button primary" id="play">Play</button>
+              <button type="button" class="button" id="back" aria-label="Back 15 minutes">−15 min</button>
+              <button type="button" class="button" id="forward" aria-label="Forward 15 minutes">+15 min</button>
+            </div>
             <div class="time-field">
-              <label for="time">Time <output id="time-out" for="time">08:30</output></label>
+              <label for="time"><span class="label">Time</span> <output id="time-out" for="time">08:30</output></label>
               <input type="range" id="time" min="0" max="1439" step="1" value="510" />
             </div>
           </div>
+          <div id="live" class="live"></div>
+          <p id="announcer" class="visually-hidden" aria-live="polite"></p>
         </div>
 
         <aside class="panel">
-          <section class="card" aria-labelledby="people-title">
-            <h2 id="people-title">Who's on the map</h2>
+          <section class="block challenge" id="challenge" aria-labelledby="challenge-title" tabindex="-1">
+            <h2 id="challenge-title">Quiz</h2>
+            <div id="quiz"></div>
+          </section>
+
+          <section class="block" aria-labelledby="people-title">
+            <h2 id="people-title">People</h2>
             <fieldset class="people">
               <legend class="visually-hidden">Show these people</legend>
               <div id="people" class="people-grid"></div>
             </fieldset>
-            <label class="field" for="focus-person">
-              Shown in amber, with the places found for them
+            <label class="field inline" for="focus-person">
+              <span class="label">In amber</span>
               <select id="focus-person"></select>
             </label>
           </section>
 
-          <section class="card" aria-labelledby="live-title">
-            <h2 id="live-title">What you're seeing</h2>
-            <div id="live" class="live"></div>
-            <p id="announcer" class="visually-hidden" aria-live="polite"></p>
-          </section>
-
-          <section class="card" aria-labelledby="places-title">
+          <section class="block" aria-labelledby="places-title">
             <h2 id="places-title">Places found for <span id="places-name">Inès</span></h2>
             <p id="detect-summary" class="note"></p>
             <ul id="poi-list" class="poi-list"></ul>
             <div id="poi-details" class="poi-details" hidden></div>
           </section>
 
-          <section class="card" aria-labelledby="detect-title">
-            <h2 id="detect-title">Find the stays yourself</h2>
+          <section class="block" aria-labelledby="detect-title">
+            <h2 id="detect-title">Stay detection</h2>
             <p class="note">
-              A stay is a run of fixes that stay within D metres for at least T minutes. Stays at the same spot are then
-              merged into one place. Move the sliders and watch places split, merge or vanish.
+              A stay is when someone remains within D metres for at least T minutes. Stays at the same spot become one
+              place. Try the sliders and see places split or disappear.
             </p>
             <div class="slider">
-              <label for="radius">Radius D <output id="radius-out" for="radius"></output></label>
+              <label for="radius"><span class="label">Radius D</span> <output id="radius-out" for="radius"></output></label>
               <input type="range" id="radius" min="50" max="500" step="25" value="200" />
             </div>
             <div class="slider">
-              <label for="minutes">Minimum time T <output id="minutes-out" for="minutes"></output></label>
+              <label for="minutes"><span class="label">Minimum time T</span> <output id="minutes-out" for="minutes"></output></label>
               <input type="range" id="minutes" min="5" max="60" step="5" value="20" />
             </div>
-            <button type="button" class="button" id="reset-detection">Back to the defaults</button>
-          </section>
-
-          <section class="card challenge" id="challenge" aria-labelledby="challenge-title" tabindex="-1">
-            <h2 id="challenge-title">The challenge</h2>
-            <div id="quiz"></div>
+            <button type="button" class="button small" id="reset-detection">Reset</button>
           </section>
         </aside>
       </section>
 
       <section class="about" aria-labelledby="about-title">
-        <h2 id="about-title">What you're looking at</h2>
+        <h2 id="about-title">About the project</h2>
         <p>
-          Every dot on the map is a GPS fix: a time and a position, nothing else. That's all an app with location access
-          needs to collect. The original challenge used 1,116,608 real fixes from 10 people, taken from the Priva'Mov
-          campaign (69 volunteers around Lyon, 34.5 million fixes between October 2014 and January 2016). Here, six
-          made-up people spend a made-up week in Lyon, with the flaws of a real log: noise, phones that stop logging for
-          an hour, no signal in the metro and the odd fix a kilometre off.
+          It was our P-SAT project in fifth year at INSA Lyon, in a team of four, supervised by Antoine Boutet. We used
+          the Priva'Mov dataset: 34.5 million GPS points from 69 volunteers around Lyon, between 2014 and 2016. We kept 10
+          people over 12 days, about 1.1 million points, found the places where they stop, and wrote 16 questions about
+          them.
         </p>
         <p>
-          To turn fixes into places, the page looks for stays: moments where someone remains within D metres for at least
-          T minutes. Stays at the same spot are merged, then each place gets a label from the list of places the script
-          knows (the original asked OpenStreetMap for an address and a place type). Homes only say "home (approximate)",
-          on purpose.
+          We tested it in the INSA privacy course and showed it to someone from the CNIL (the French data protection
+          authority). They liked it, but told us the real traces could identify the volunteers. In our report we said
+          generated data would fix that, so this version uses six fake people over one week, with the usual problems of
+          a real log: noise, gaps, no signal in the metro and some points a kilometre off.
         </p>
         <p>
-          With places and times, the rest is reading: where someone sleeps, where they work, who they live with, when
-          they're away. No answer to the quiz is written in the data. It all comes from the traces, the way an app, a data
-          broker or anyone holding a leaked file could get it.
-        </p>
-        <p>
-          We tested the original in the fifth-year privacy course at INSA Lyon and showed it to someone from the CNIL,
-          France's data protection authority. They liked the challenge but warned that the participants could be
-          re-identified from their traces. Our report suggested generated data as the fix. This page is that fix.
+          Every dot is only a time and a position. None of the answers is written in the data, you find them by looking at
+          where people sleep, where they go during the day and how fast they move.
         </p>
       </section>
     </main>
-
-    <footer class="page-footer">
-      Rebuilt from Geoloc Challenge (P-SAT, INSA Lyon, 2024-2025). Built by Swan Maillard.
-    </footer>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

@@ -29,7 +29,7 @@ export const QUESTIONS: Question[] = [
       "Her dot spends every night in the same spot. Click that place to see its area.",
     ],
     explanation:
-      "The place where a phone spends its nights is almost always home. It was the first question of the original challenge too. With a home and a workplace, a name is often one search away.",
+      "Where a phone spends the night is almost always home. It was also the first question of the original challenge. With a home and a workplace, finding a name is often easy.",
   },
   {
     id: "hugo-sport",
@@ -46,7 +46,7 @@ export const QUESTIONS: Question[] = [
       "He goes to the same place in Gerland on Wednesday evening and Sunday morning.",
     ],
     explanation:
-      "A regular place at regular times becomes a hobby, and a hobby tells people about your health, your budget and when your flat is empty. Hugo's phone also loses signal on the way there: he takes the metro, and the gap is a clue in itself.",
+      "Going to the same place at the same times usually means a hobby. It also says when the flat is empty. Hugo's phone loses signal on the way because he takes the metro, and that gap is a clue too.",
   },
   {
     id: "camille-friday",
@@ -60,7 +60,7 @@ export const QUESTIONS: Question[] = [
     answer: "theatre",
     hints: ["Pick Friday and move the time to 21:00.", "She walked a few minutes from home and stayed close to three hours."],
     explanation:
-      "One evening out says little. A few months of them give away someone's tastes, and with the theatre's programme, the play they saw. The original challenge asked what someone went to see at this same theatre.",
+      "One evening out doesn't say much, but a few months of them show someone's tastes. With the theatre's programme you can even find the play. The original challenge had a question about this same theatre.",
   },
   {
     id: "same-building",
@@ -77,7 +77,7 @@ export const QUESTIONS: Question[] = [
       "Show everyone at 3 in the morning and look for two dots on top of each other.",
     ],
     explanation:
-      "Two homes at the same point usually mean flatmates, a couple or neighbours. Nobody said anything about Tom and Hugo, their traces did. Shared places at shared times are how the original challenge found social links between participants.",
+      "Two homes at the same point usually means flatmates, a couple or neighbours. In the original challenge, we found links between people the same way, by looking at who was at the same place at the same time.",
   },
   {
     id: "bike-commute",
@@ -94,7 +94,7 @@ export const QUESTIONS: Question[] = [
       "One route goes through Parc de la Tête d'Or, where no car, bus or tram can go.",
     ],
     explanation:
-      "Speed alone is ambiguous: in town, a bike and a car take about the same time. Our report named this as a limit of the original and suggested looking for routes through parks. That's what gives Inès away here.",
+      "Speed alone isn't enough, in town a bike and a car go about as fast. That was a limit of the original, and in our report we suggested looking for routes through parks. That's what gives Inès away here.",
   },
   {
     id: "lea-paris",
@@ -111,7 +111,7 @@ export const QUESTIONS: Question[] = [
       "She waits at a station, then her phone reports close to 300 km/h for more than an hour.",
     ],
     explanation:
-      "Where a trip starts and how fast it goes leave one answer. Trips are among the most telling parts of a location history: which city, which day, how often. The original challenge asked how someone travelled to Bordeaux.",
+      "Where the trip starts and how fast it goes leave only one answer. The original challenge had a similar question about a trip to Bordeaux.",
   },
   {
     id: "saint-jean-photo",
@@ -128,7 +128,7 @@ export const QUESTIONS: Question[] = [
       "Someone else was on Place Saint-Jean that week, but on Wednesday. Only one person was there on Saturday afternoon.",
     ],
     explanation:
-      "A photo carries a time and often a position. Matching it against location traces is enough to put a name on an anonymous picture. The original challenge had this question with a real photo of Place Saint-Jean.",
+      "A photo has a time and often a position. Comparing it with location traces is enough to find who took it. The original challenge had this question with a real photo of Place Saint-Jean.",
   },
   {
     id: "speed-camera",
@@ -145,6 +145,6 @@ export const QUESTIONS: Question[] = [
       "Pick Tuesday, put the driver in amber and step through 8:00 to 8:10. The panel gives the speed.",
     ],
     explanation:
-      "A phone that logs where you are also logs how fast you go. Some car insurers already price policies on how people drive. The original challenge asked who got a speeding ticket on a given day.",
+      "If a phone logs where you are, it also logs how fast you go. Some car insurers already use this kind of data. The original challenge asked who got a speeding ticket on a given day.",
   },
 ];

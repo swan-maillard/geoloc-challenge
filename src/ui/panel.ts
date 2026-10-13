@@ -57,13 +57,8 @@ function hourChart(poi: Poi): SVGSVGElement {
     const h = Math.max(2, (value / peak) * plot);
     const x = hour * slot + 1;
     const w = slot - 2;
-    const r = Math.min(4, w / 2, h / 2);
     const y = top + plot - h;
-    // Rounded top, square base on the axis.
-    const bar = svg("path", {
-      class: "bar",
-      d: `M${x},${top + plot} V${y + r} Q${x},${y} ${x + r},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${top + plot} Z`,
-    });
+    const bar = svg("rect", { class: "bar", x, y, width: w, height: h });
     const title = svg("title", {});
     title.textContent = `${String(hour).padStart(2, "0")}:00 to ${String(hour + 1).padStart(2, "0")}:00, ${Math.round(value)} min`;
     bar.append(title);
@@ -110,7 +105,7 @@ export function renderPoiDetails(container: HTMLElement, poi: Poi): void {
   for (const visit of poi.visits) visits.append(element("li", undefined, visitText(visit)));
   container.append(visits);
   container.append(hourChart(poi));
-  container.append(element("p", "chart-caption", "Minutes spent here in each hour of the day, added up over the week."));
+  container.append(element("p", "chart-caption", "Minutes spent here per hour of the day, over the whole week."));
 }
 
 export function renderPoiList(list: HTMLElement, pois: Poi[], selected: number | null, onSelect: (id: number) => void): void {

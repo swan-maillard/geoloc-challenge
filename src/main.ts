@@ -125,7 +125,7 @@ function renderLive(): void {
   if (ids.length === 0) {
     const empty = document.createElement("p");
     empty.className = "faded";
-    empty.textContent = "Nobody is on the map. Tick a name above.";
+    empty.textContent = "Nobody is on the map. Tick a name under People.";
     live.append(empty);
   } else {
     const list = document.createElement("ul");
@@ -160,8 +160,8 @@ function renderPlaces(): void {
   const { stays, visits, pois } = analyse(state.focus);
   $("places-name").textContent = nameOf(state.focus);
   $("detect-summary").textContent =
-    `With D = ${state.radius} m and T = ${state.minMinutes} min, ${nameOf(state.focus)}'s week has ${stays} stays, ` +
-    `merged into ${visits} visits at ${pois.length} ${pois.length === 1 ? "place" : "places"}.`;
+    `With D = ${state.radius} m and T = ${state.minMinutes} min: ${stays} stays, ${visits} visits, ` +
+    `${pois.length} ${pois.length === 1 ? "place" : "places"}. Click one to see when.`;
   renderPoiList($("poi-list"), pois, state.selectedPoi, selectPoi);
   map.showPois(pois, state.selectedPoi);
   const details = $("poi-details");
@@ -353,7 +353,16 @@ $("reset-detection").addEventListener("click", () => {
   onDetectionChange();
 });
 
-window.addEventListener("resize", () => map.resize());
+// The explorer's height on wide screens depends on the header's.
+const header = document.querySelector<HTMLElement>(".page-header")!;
+const setHeaderHeight = () => document.documentElement.style.setProperty("--header-h", `${header.offsetHeight}px`);
+setHeaderHeight();
+map.resize();
+
+window.addEventListener("resize", () => {
+  setHeaderHeight();
+  map.resize();
+});
 
 renderPeople();
 renderFocusOptions();

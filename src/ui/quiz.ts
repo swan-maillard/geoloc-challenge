@@ -34,7 +34,7 @@ export class Quiz {
         <p class="note" data-error hidden>Pick an answer first.</p>
         <div class="quiz-actions">
           <button type="button" class="button" data-hint></button>
-          <button type="submit" class="button primary">Check my answer</button>
+          <button type="submit" class="button primary">Check</button>
         </div>
       </form>
       <div class="feedback" aria-live="polite"></div>`;
@@ -54,7 +54,7 @@ export class Quiz {
       fieldset.append(label);
     }
     const hintButton = wrap.querySelector<HTMLButtonElement>("[data-hint]")!;
-    hintButton.textContent = "Show a hint";
+    hintButton.textContent = "Hint";
     hintButton.addEventListener("click", () => this.showHint(wrap, hintButton));
     wrap.querySelector("form")!.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -74,7 +74,7 @@ export class Quiz {
     hints.hidden = false;
     this.hintsShown++;
     if (this.hintsShown === 1) {
-      button.textContent = "Show the second hint";
+      button.textContent = "Another hint";
     } else {
       button.hidden = true;
       wrap.querySelector<HTMLButtonElement>("button[type=submit]")!.focus();
@@ -112,7 +112,7 @@ export class Quiz {
     const feedback = wrap.querySelector<HTMLElement>(".feedback")!;
     const result = document.createElement("p");
     result.className = "result";
-    result.textContent = right ? "Right." : `Not this one. The answer is: ${answerLabel}.`;
+    result.textContent = right ? "Right!" : `No, it was ${answerLabel}.`;
     const explanation = document.createElement("p");
     explanation.textContent = q.explanation;
     const next = document.createElement("button");
@@ -139,11 +139,11 @@ export class Quiz {
     wrap.innerHTML = `
       <p class="score" tabindex="-1">${this.score} out of ${total}</p>
       <p></p>
-      <p class="note">Every answer came from positions and times, the kind of data many apps ask for in one tap.</p>`;
+      <p class="note">All of it came from times and positions, which a lot of apps collect.</p>`;
     wrap.querySelectorAll("p")[1].textContent =
       this.score === total
-        ? "Every one. You read a stranger's week from a list of dots."
-        : `You found ${this.score} of the ${total} things these traces give away about people you've never met.`;
+        ? "All of them, well done."
+        : `You got ${this.score} of the ${total} questions right.`;
     const again = document.createElement("button");
     again.type = "button";
     again.className = "button";
